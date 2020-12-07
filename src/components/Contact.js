@@ -10,9 +10,19 @@ function Contact() {
   return (
     <div>
       <h3> Contact Page </h3>
-      <form onSubmit={handleSubmit} className="submit-details-form">
-        <label>
-          Frirst Name:
+      <form onSubmit={handleSubmit} className="submit-details-form row">
+        <label className="col-sm-12">
+          Email:
+        <input
+            type="text"
+            value={val}
+            onChange={e => setVal(e.target.value)}
+
+          />
+        </label>
+
+        <label className="col-sm-12">
+          Query:
         <input
             type="text"
             value={val}
