@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useState } from 'react';
+import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 
 function Contact() {
-  const [email, setEmail] = useState("");
-  const [query, setQuery] = useState("");
+  const [email, setEmail] = useState('');
+  const [query, setQuery] = useState('');
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -13,67 +13,60 @@ function Contact() {
   const handleSubmit = (evt) => {
     evt.preventDefault();
 
-  //API call to send contact email
-  
+    //API call to send contact email
+
     axios({
       method: 'post',
       url: 'http://localhost:1234/contacts/create-contact',
       data: {
         email: `${email}`,
-        
+      },
+    }).then(
+      (response) => {
+        console.log(response.data);
+      },
+      (error) => {
+        console.log(error);
       }
-    }).then((response)=>{
-      console.log(response.data);
-    },
-    (error)=> {
-      console.log(error);
-    })
+    );
 
-// Api call to send query
+    // Api call to send query
 
     axios({
       method: 'post',
       url: 'http://localhost:1234/contacts/create-query',
       data: {
         email: `${email}`,
-        query: `${query}`
+        query: `${query}`,
+      },
+    }).then(
+      (response) => {
+        alert(response.data);
+      },
+      (error) => {
+        console.log(error);
       }
-    }).then((response)=>{
-      alert(response.data);
-    },
-    (error)=> {
-      console.log(error);
-    })
-  }
+    );
+  };
 
   return (
-    <div>
+    <div className='contact-page-main-section'>
       <h3> Contact Page </h3>
-      <form onSubmit={handleSubmit} className="submit-details-form row">
-        <label className="col-sm-12">
+      <form onSubmit={handleSubmit} className='submit-details-form row'>
+        <label className='col-sm-12'>
           Email:
-         
-          <input
-            type="text"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-
-          />
+          <input type='text' style={{ marginLeft: '25px' }} value={email} onChange={(e) => setEmail(e.target.value)} />
         </label>
-
-        <label className="col-sm-12">
+        <label className='col-sm-12'>
           Query:
-        <input
-            type="text"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-          />
+          <input type='text' value={query} onChange={(e) => setQuery(e.target.value)} />
         </label>
-        <input type="submit" value="Submit" className="submit-button" />
+        <Button variant='primary' type='submit' className='submit-button' value='Submit'>
+          Submit
+        </Button>{' '}
+        {/* <input type='submit' value='Submit' className='submit-button' /> */}
       </form>
-      
     </div>
-
   );
 }
 
