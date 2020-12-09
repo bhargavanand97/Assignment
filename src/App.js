@@ -4,13 +4,13 @@ import { Link, Route } from "react-router-dom";
 import Home from './components/Home';
 import Category from './components/Category';
 import Contact from './components/Contact';
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav } from 'react-bootstrap';
 
 function App() {
   return (
     <div className="">
       <div className="header">
-        Assignment Project
+        <h1>A project by SivaRam - Full stack portfolio project </h1>
       </div>
       <Navbar bg="dark" variant="dark">
         <Navbar.Brand href="#home">Navbar</Navbar.Brand>

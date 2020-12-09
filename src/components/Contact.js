@@ -1,22 +1,62 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Modal, Button } from 'react-bootstrap';
 
 function Contact() {
-  const [val, setVal] = useState("");
+  const [email, setEmail] = useState("");
+  const [query, setQuery] = useState("");
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    alert(`Here is the text you entered ${val}`)
+
+  //API call to send contact email
+  
+    axios({
+      method: 'post',
+      url: 'http://localhost:1234/contacts/create-contact',
+      data: {
+        email: `${email}`,
+        
+      }
+    }).then((response)=>{
+      console.log(response.data);
+    },
+    (error)=> {
+      console.log(error);
+    })
+
+// Api call to send query
+
+    axios({
+      method: 'post',
+      url: 'http://localhost:1234/contacts/create-query',
+      data: {
+        email: `${email}`,
+        query: `${query}`
+      }
+    }).then((response)=>{
+      alert(response.data);
+    },
+    (error)=> {
+      console.log(error);
+    })
   }
+
   return (
     <div>
       <h3> Contact Page </h3>
       <form onSubmit={handleSubmit} className="submit-details-form row">
         <label className="col-sm-12">
           Email:
-        <input
+         
+          <input
             type="text"
-            value={val}
-            onChange={e => setVal(e.target.value)}
+            value={email}
+            onChange={e => setEmail(e.target.value)}
 
           />
         </label>
@@ -25,12 +65,13 @@ function Contact() {
           Query:
         <input
             type="text"
-            value={val}
-            onChange={e => setVal(e.target.value)}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
           />
         </label>
         <input type="submit" value="Submit" className="submit-button" />
       </form>
+      
     </div>
 
   );
