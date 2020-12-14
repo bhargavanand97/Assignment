@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-// import { Link, Route } from "react-router-dom";
+import { Route } from 'react-router-dom';
 import Home from './components/Home';
 import Category from './components/Category';
 import Contact from './components/Contact';
