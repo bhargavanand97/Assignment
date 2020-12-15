@@ -10,7 +10,7 @@ function App() {
   return (
     <div className=''>
       <div className='header'>
-        <h1>A project by SivaRam - Full stack portfolio project </h1>
+        <h1>A project by Bhargav - Full stack portfolio project </h1>
       </div>
       <Navbar bg='dark' variant='dark'>
         <Navbar.Brand href='#home'>Navbar</Navbar.Brand>
